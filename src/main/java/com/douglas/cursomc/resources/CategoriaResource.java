@@ -1,35 +1,35 @@
 package com.douglas.cursomc.resources;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.douglas.cursomc.domain.Categoria;
-import com.douglas.cursomc.repository.CategoriaRepository;
+import com.douglas.cursomc.service.CategoriaService;
 
 @RestController
 @RequestMapping(value="/categorias")
 public class CategoriaResource {
 	
-	private CategoriaRepository categoriaRepository;
+	private CategoriaService categoriaService;
 	
-	public CategoriaResource(CategoriaRepository categoriaRepository) {
-		this.categoriaRepository = categoriaRepository;
+	
+	public CategoriaResource(CategoriaService categoriaService) {
+		this.categoriaService = categoriaService;
 	}
 
 	@GetMapping
 	public List<Categoria> listar() {
-		Categoria cat1 = new Categoria(1, "Informatica");
-		Categoria cat2 = new Categoria(2, "Escritorio");
-		
-		List<Categoria> lista = new ArrayList<>();
-		lista.add(cat1);
-		lista.add(cat2);
-		
-		return lista;
+		return categoriaService.findAll();
+	}
+	
+	@PostMapping
+	public Categoria save(@RequestBody Categoria categoria) {
+		return categoriaService.save(categoria);
 	}
 
 }
