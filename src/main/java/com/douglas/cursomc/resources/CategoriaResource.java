@@ -8,11 +8,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.douglas.cursomc.domain.Categoria;
+import com.douglas.cursomc.repository.CategoriaRepository;
 
 @RestController
 @RequestMapping(value="/categorias")
 public class CategoriaResource {
 	
+	private CategoriaRepository categoriaRepository;
+	
+	public CategoriaResource(CategoriaRepository categoriaRepository) {
+		this.categoriaRepository = categoriaRepository;
+	}
+
 	@GetMapping
 	public List<Categoria> listar() {
 		Categoria cat1 = new Categoria(1, "Informatica");
