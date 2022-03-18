@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import com.douglas.cursomc.domain.Categoria;
 import com.douglas.cursomc.repository.CategoriaRepository;
 import com.douglas.cursomc.service.CategoriaService;
+import com.douglas.cursomc.service.exception.ObjectNotFoundException;
 
 @Component
 public class CategoriaServiceImpl implements CategoriaService {
@@ -21,7 +22,7 @@ public class CategoriaServiceImpl implements CategoriaService {
 	@Override
 	public Optional<Categoria> findById(Integer id) {
 		Optional<Categoria> categoria = categoriaRepository.findById(id);
-		return Optional.of(categoria.orElse(null));
+		return Optional.of(categoria.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado id: " + id)));
 	}
 
 	@Override

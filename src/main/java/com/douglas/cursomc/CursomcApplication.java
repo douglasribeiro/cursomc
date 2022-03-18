@@ -12,8 +12,8 @@ import com.douglas.cursomc.domain.Produto;
 import com.douglas.cursomc.repository.CategoriaRepository;
 import com.douglas.cursomc.repository.ProdutoRepository;
 
-//token git: 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
-// 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
+//token git: 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
+// 
 @SpringBootApplication
 public class CursomcApplication implements CommandLineRunner {
 
